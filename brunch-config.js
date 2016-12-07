@@ -11,5 +11,8 @@ module.exports = {
 
   plugins: {
     babel: {presets: ['es2015', 'react']}
+  },
+  server: {
+    port: 5555
   }
 }

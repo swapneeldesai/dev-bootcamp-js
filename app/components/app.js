@@ -1,29 +1,13 @@
 import React from 'react';
 
-export default class Counter extends React.Component {
-  constructor() {
-    super()
-
-    this.state = {
-      counter: 0
-    }
-
-    this.onDecrement = this.decrement.bind(this)
-    this.onIncrement = this.increment.bind(this)
-  }
-  increment() {
-    this.setState({counter: this.state.counter + 1})
-  }
-  decrement() {
-    this.setState({counter: this.state.counter - 1})
-  }
+export default class App extends React.Component {
   render() {
     return (
       <div>
-        <p id="counter">{this.state.counter}</p>
-        <button id="btn-decrement" onClick={this.onDecrement}>-</button>
-        <button id="btn-increment" onClick={this.onIncrement}>+</button>
+        <h1>Welcome! </h1>
+        <h2>This is a simple React component with lot of white space and no relevant content in it as of now.</h2>
+        <img src="http://i.imgur.com/Wo3YF30.png" alt=""></img>
       </div>
-    );
+    )
   }
 }

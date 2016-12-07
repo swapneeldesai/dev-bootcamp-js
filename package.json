@@ -30,7 +30,6 @@
     "javascript-brunch": "^2.0.0",
     "jest": "^17.0.0",
     "react-addons-test-utils": "^15.4.1",
-    "react-dom": "^15.4.1",
     "uglify-js-brunch": "^2.0.0"
   }
 }

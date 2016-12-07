@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>ReactJS Bootcamp</title>
+	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author" content="Abhinav Sharma">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<link rel="stylesheet" href="./lib/css/reveal.css">
+	<link rel="stylesheet" href="./lib/css/theme/moon.css" id="theme">
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="./lib/lib/css/zenburn.css">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? './lib/css/print/pdf.css' : './lib/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="./lib/lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+<body>
+<div class="reveal">
+	<!-- Any section element inside of this container is displayed as a slide -->
+	<div class="slides">
+		<section>
+			<h4>React JS</h4>
+		</section>
+		<section data-transition="fade">
+			<h2>Agenda</h2>
+			<ul>
+				<li>React as a view layer</li>
+				<li>JSX</li>
+				<li>Mounting component to DOM</li>
+				<li>Simple Components</li>
+				<li>React Lifecycle Methods</li>
+				<li>Passing Props</li>
+				<li>Refs</li>
+				<li>Starting the application</li>
+			</ul>
+		</section>
+		<section>
+			<section>
+				<h2>Why the <strong>^@#$%</strong> is there another js framework</h2>
+			</section>
+			<section>
+				<h2>React</h2>
+				<ul>
+					<li>Small Modular Components</li>
+					<li>Minimal API Surface Area</li>
+					<li>Performant with JSDom</li>
+					<li>Simply the view layer</li>
+					<li>JSX can be strange at first</li>
+					<li>Since it is just a view layer you must enforce good patterns</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Angular</h2>
+				<ul class="ul-demo-l">
+					<li>Directives are crazy powerful and declarative</li>
+					<li>Filters are awesome</li>
+					<li>Can be used modularly with some good insight. see Angular UI</li>
+					<li>Great for prototyping</li>
+				</ul>
+				<ul class="ul-demo-r">
+					<li>Two binding with Dirty Checks and Digest Cycle</li>
+					<li>Technically inperformant but not noticeable 99% of the time</li>
+					<li>Code under the head is insanly complex argueable over engineered.</li>
+					<li>Actions automagically trigger digest cycles</li>
+					<li>Doesn't feel like writing JS as huge API surface area</li>
+					<li>Docs still suck</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Ember</h2>
+				<ul class="ul-demo-l">
+					<li>Efficient data binding with accessors</li>
+					<li>Less gotchas than Angular</li>
+					<li>Computed Properties</li>
+					<li>Amazing docs</li>
+					<li>Great for prototyping</li>
+				</ul>
+				<ul class="ul-demo-r">
+					<li>Very heavy and opinionated</li>
+					<li>Syntax isn't as clean with accessors</li>
+					<li>Highest barrier to entry</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Backbone</h2>
+				<ul class="ul-demo-l">
+					<li>Binding with accessors but requires setup</li>
+					<li>0 assumptions are made</li>
+					<li>Extendable and versatile</li>
+					<li>Marionette is &hearts;</li>
+				</ul>
+				<ul class="ul-demo-r">
+					<li>Less for free but it stays out of your way after</li>
+					<li>Backbone is actually pretty great for what it does so ... </li>
+				</ul>
+			</section>
+			<section>
+				<h3>Use what makes sense and enables you to be productive!</h3>
+				<img src="http://i.imgur.com/z9zn3F7.jpg" />
+			</section>
+			<section>
+				<div>Great Comparison Article here</div>
+				<a href="http://derickbailey.com/2015/08/26/building-a-component-based-web-ui-with-modern-javascript-frameworks/">
+					http://derickbailey.com/2015/08/26/building-a-component-based-web-ui-with-modern-javascript-frameworks
+				</a>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h2>React</h2>
+				<h4>according to Facebook</h4>
+				<ul>
+					<li>It's simple</li>
+					<li>It's declarative</li>
+					<li>It's composable</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Components are your building blocks</h2>
+				<ul>
+					<li>Self contained</li>
+					<li>Modular</li>
+					<li>Dynamic</li>
+				</ul>
+			</section>
+			<section>
+				<h2>How can we break this down into components?</h2>
+				<img src="https://cdn.rawgit.com/westeezy/ReactJS-Bootcamp/master/walkthroughs/slides/day1/img/reddit.png"/>
+			</section>
+		</section>
+		<section>
+			<h2>JSX</h2>
+			<span>Render markup in your code</span>
+			<ul>
+				<li>This makes sense with small modular components</li>
+				<li>Babel can transpile JSX into plain old javascript</li>
+				<li>You can very easily write your javascript logic alongside your presentation layer</li>
+			</ul>
+		</section>
+		<section>
+			<h2>Mounting a component</h2>
+			<pre><code>
+    import React from 'react';
+import app from './components/App/App';
+
+React.render(<App></App>, document.getElementById('app'));
+</code></pre>
+		</section>
+		<section>
+			<h2>Simple Component</h2>
+			<pre><code>
+import React from 'react';
+export default class Foo extends React.Component {
+  render() {
+    let name = 'React';
+    return (
+      <div className="my-super-awesome-react-app">
+        <span>Hello Margret, It's me,</span>
+        <span>{name}</span>
+      </div>
+    );
+  }
+}
+</code></pre>
+		</section>
+		<section>
+			<section>
+				<h2>What are PROPS?</h2>
+				<img src="./images/props.png" alt="passing props example" height="500" width="400" />
+			</section>
+			<section>
+				<h2>Where is the code?</h2>
+				<div class="fragment fade-in">
+					<h4>supply props</h4>
+					<pre>
+                        <code>
+  < Welcome name="Sara" />
+                        </code>
+                      </pre>
+				</div>
+				<div class="fragment fade-in">
+					<h4>access props</h4>
+					<pre>
+                      <code>
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+                      </code>
+                    </pre>
+				</div>
+			</section>
+			<section>
+				<h2>How will that look?</h2>
+				<div class="fragment fade-in">
+					<h4>Like this!</h4>
+					<h1>Hello, Sara</h1>
+				</div>
+			</section>
+		</section>
+		<section>
+			<section data-transition="fade">
+				<img src="./images/states_pic.jpg" alt="passing props" height="500" width="400" />
+				<div class="fragment fade-in">
+					<h4>If I can't update my props, how the <b>#$^%@!</b> do I update myself?</h4>
+				</div>
+			</section>
+			<section data-transition="fade">
+				<h2>ENTER<span  class = "fragment">.</span><span  class = "fragment">.</span><span  class = "fragment">.</span><span  class = "fragment">.</span><span  class = "fragment">.</span><span class = "fragment fade-in"> STATES!</span></h2>
+				<div class = "fragment fade-in">
+					<h3>how do I use states?</h3>
+					<pre>
+                        <code>
+<p>The current temperature is: {this.state.temperature}</p>
+                        </code>
+                      </pre>
+				</div>
+			</section>
+			<section>
+				<h3>how do I change the state?</h3>
+				<div class = "fragment fade-in">
+<pre>
+  <code>
+    this.state.temperature = 30;
+  </code>
+</pre>
+				</div>
+				<div class = "fragment fade-in">
+					<img src="./images/state_punishment.gif" alt="state punishment" height="200" width="400" />
+				</div>
+				<div class = "fragment fade-in">
+<pre>
+  <code>
+    this.setState({temperature: 30});
+  </code>
+</pre>
+				</div>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h4>React Lifecycle</h4>
+				<img style="background:white; max-width: 700px;" src="https://cdn.rawgit.com/westeezy/ReactJS-Bootcamp/master/walkthroughs/slides/day2/img/React%20Lifecycle.png" />
+			</section>
+			<section>
+				<h4>getInitialState()</h4>
+				<ul>
+					<li>return the basic representation of your state. Invoked once before component is mounted</li>
+				</ul>
+			</section>
+			<section>
+				<h4>componentWillMount()</h4>
+				<ul>
+					<li>Invoked once before initial render</li>
+				</ul>
+			</section>
+			<section>
+				<h4>componentWillRecieveProps()</h4>
+				<ul>
+					<li>Invoked when props from parent change</li>
+					<li>can react to prop transition before the re render is called</li>
+					<li>can still access old props via this.props and new props via the first parameter</li>
+				</ul>
+			</section>
+			<section>
+				<h4>shouldComponentUpdate()</h4>
+				<ul>
+					<li>can return false to stop a re render and gain that bit of performance</li>
+					<li>Always returns true by default</li>
+				</ul>
+			</section>
+			<section>
+				<h4>componentWillUpdate()</h4>
+				<ul>
+					<li>perform prep before rerender</li>
+				</ul>
+			</section>
+			<section>
+				<h4>render()</h4>
+				<ul>
+					<li>This is the meat of your component and generates the React Element to draw into the DOM</li>
+					<li>Pure function - does not modify state</li>
+				</ul>
+			</section>
+			<section>
+				<h4>componentDidUpdate()</h4>
+				<ul>
+					<li>not called for initial render</li>
+					<li>perform work on domNode</li>
+				</ul>
+			</section>
+			<section>
+				<h4>componentWillUnmount()</h4>
+				<ul>
+					<li>place to perform teardown code and remove listeners etc</li>
+				</ul>
+			</section>
+		</section>
+		<section>
+			<h2>TIme to code</h2>
+			<p>Clone repository and follow the instructions in README</p>
+			<p><a href="https://github.com/swapneeldesai/dev-bootcamp-js.git" target="_blank">React Starter Kit</a></p>
+		</section>
+	</div>
+</div>
+<script src="./lib/lib/js/head.min.js"></script>
+<script src="./lib/js/reveal.js"></script>
+<script src="./js/app.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+	Reveal.initialize(revealConfig);
+</script>
+</body>
+</html>
